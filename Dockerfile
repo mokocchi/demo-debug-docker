@@ -10,4 +10,8 @@ COPY main.py /app
 
 RUN pip3 install -r requirements.txt
 
-CMD "gunicorn -w 4 -b 0.0.0.0:8000 --access-logfile log/access.log --error-logfile log/error.log main:app"
+RUN mkdir log
+
+RUN touch db.txt
+
+CMD gunicorn -w 4 -b 0.0.0.0:8000 --access-logfile log/access.log --error-logfile log/error.log main:app

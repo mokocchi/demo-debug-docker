@@ -16,7 +16,7 @@ def get_users():
     f = open("db.txt", "r")
     users = []
     for line in f.readlines():
-        users.append(line)
+        users.append(line[:-1])
     f.close()
     response = {'users': users}
     return jsonify(response)
@@ -29,7 +29,7 @@ def create_user():
         return {"error": "Bad Request"}
     user = json['user']
     f = open("db.txt", "a")
-    f.write(user)
+    f.write(user + "\n")
     f.close()
     response = {'message': 'success'}
     return jsonify(response)
